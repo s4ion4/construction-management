@@ -1,0 +1,31 @@
+@use 'tokens/color';
+@use 'tokens/semantic';
+@use 'tokens/shadow';
+@use 'tokens/radius';
+@use 'tokens/spacing';
+@use 'tokens/typography';
+@use 'styles/material';
+
+html {
+  color-scheme: light;
+
+  &.dark-mode {
+    color-scheme: dark;
+  }
+}
+
+body {
+  margin: 0;
+  font-size: var(--font-size-md);
+  line-height: 1.5;
+  color: var(--color-fg-default);
+  background-color: var(--color-bg-page);
+}
+
+body,
+input,
+optgroup,
+select,
+textarea {
+  font-family: 'Noto Sans JP', system-ui, sans-serif;
+}

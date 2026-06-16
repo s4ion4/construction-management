@@ -1,0 +1,224 @@
+<form class="project-form" [formGroup]="form">
+  <section class="project-form-section">
+    <h2 class="project-form-section-label">基本情報</h2>
+    <div class="project-form-section-fields">
+      <mat-form-field subscriptSizing="dynamic" class="project-form-field-project-code">
+        <mat-label>工事コード</mat-label>
+        <input matInput formControlName="projectCode" required />
+        @if (form.controls.projectCode.hasError('required')) {
+          <mat-error>必須入力です。</mat-error>
+        }
+        @if (form.controls.projectCode.hasError('maxlength')) {
+          <mat-error>10文字以内で入力してください。</mat-error>
+        }
+        @if (form.controls.projectCode.hasError('projectCodePattern')) {
+          <mat-error>半角大文字英字・半角数字・ハイフン（-）のみ使用できます。</mat-error>
+        }
+        @if (form.controls.projectCode.hasError('projectCodeHyphenEdge')) {
+          <mat-error>先頭と末尾にハイフンは使用できません。</mat-error>
+        }
+        @if (form.controls.projectCode.hasError('projectCodeUnique')) {
+          <mat-error>このコードは使用されています。</mat-error>
+        }
+        @if (form.controls.projectCode.hasError('projectCodeCheckFailed')) {
+          <mat-error>コードの確認中にエラーが発生しました。再度お試しください。</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label>工事名</mat-label>
+        <input
+          matInput
+          formControlName="name"
+          required
+          (focus)="nameFocused.set(true)"
+          (blur)="nameFocused.set(false)" />
+        @if (nameFocused()) {
+          <mat-hint align="end">{{ form.controls.name.value.length }} / 50</mat-hint>
+        }
+        @if (form.controls.name.hasError('required')) {
+          <mat-error>必須入力です。</mat-error>
+        }
+        @if (form.controls.name.hasError('maxlength')) {
+          <mat-error>50文字以内で入力してください。</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field subscriptSizing="dynamic" class="project-form-field-order-date">
+        <mat-label>受注日</mat-label>
+        <input matInput [matDatepicker]="orderDatePicker" formControlName="orderDate" required />
+        <mat-datepicker-toggle matIconSuffix [for]="orderDatePicker" />
+        <mat-datepicker #orderDatePicker />
+        @if (form.controls.orderDate.hasError('required')) {
+          <mat-error>必須入力です。</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field subscriptSizing="dynamic" class="project-form-field-order-type">
+        <mat-label>受注区分</mat-label>
+        <mat-select formControlName="orderType" required>
+          @for (item of orderTypeLabels; track item.value) {
+            <mat-option [value]="item.value">{{ item.label }}</mat-option>
+          }
+        </mat-select>
+        @if (form.controls.orderType.hasError('required')) {
+          <mat-error>必須入力です。</mat-error>
+        }
+      </mat-form-field>
+      <div class="project-form-field-estimate-number" formGroupName="estimateNumber">
+        <mat-form-field subscriptSizing="dynamic" class="project-form-field-estimate-main">
+          <mat-label>見積番号</mat-label>
+          <input matInput formControlName="mainNumber" [errorStateMatcher]="parentInvalidMatcher" />
+          @if (form.controls.estimateNumber.hasError('estimateNumberIncomplete')) {
+            <mat-error>親番号と枝番号はどちらも入力してください。</mat-error>
+          }
+          @if (form.controls.estimateNumber.hasError('estimateNumberMainFormat')) {
+            <mat-error>親番号は数字6桁で入力してください。</mat-error>
+          }
+          @if (form.controls.estimateNumber.hasError('estimateNumberBranchFormat')) {
+            <mat-error>枝番号は数字2桁で入力してください。</mat-error>
+          }
+        </mat-form-field>
+        <span class="project-form-field-separator">-</span>
+        <mat-form-field subscriptSizing="dynamic" class="project-form-field-estimate-branch">
+          <mat-label>枝番</mat-label>
+          <input
+            matInput
+            formControlName="branchNumber"
+            [errorStateMatcher]="parentInvalidMatcher" />
+        </mat-form-field>
+      </div>
+    </div>
+  </section>
+  <hr class="project-form-divider" />
+  <section class="project-form-section">
+    <h2 class="project-form-section-label">得意先情報</h2>
+    <div class="project-form-section-fields">
+      <div class="project-form-field-row" formGroupName="customer">
+        <mat-form-field subscriptSizing="dynamic" class="project-form-field-code">
+          <mat-label>得意先コード</mat-label>
+          <input
+            #customerCodeTrigger="matAutocompleteTrigger"
+            matInput
+            formControlName="code"
+            required
+            [matAutocomplete]="customerAuto"
+            [errorStateMatcher]="customerCodeMatcher"
+            (blur)="onCustomerCodeBlur()" />
+          <mat-autocomplete
+            #customerAuto="matAutocomplete"
+            (optionSelected)="onCustomerSelected($event)">
+            @for (customer of filteredCustomers(); track customer.customerCode) {
+              <mat-option [value]="customer.customerCode">
+                <span class="autocomplete-option-code">{{ customer.customerCode }}</span>
+                <span class="autocomplete-option-name">{{ customer.name }}</span>
+              </mat-option>
+            }
+          </mat-autocomplete>
+          @if (form.controls.customer.controls.code.hasError('required')) {
+            <mat-error>必須入力です。</mat-error>
+          }
+          @if (form.controls.customer.controls.code.hasError('maxlength')) {
+            <mat-error>8文字以内で入力してください。</mat-error>
+          }
+          @if (form.controls.customer.controls.code.hasError('customerCodePattern')) {
+            <mat-error>半角大文字英字・半角数字のみ使用できます。</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field subscriptSizing="dynamic" class="project-form-field-name">
+          <mat-label>得意先名</mat-label>
+          <input matInput formControlName="name" />
+        </mat-form-field>
+      </div>
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label>客先担当者</mat-label>
+        <input
+          matInput
+          formControlName="customerContactName"
+          (focus)="customerContactNameFocused.set(true)"
+          (blur)="customerContactNameFocused.set(false)" />
+        @if (customerContactNameFocused()) {
+          <mat-hint align="end">{{ form.controls.customerContactName.value.length }} / 20</mat-hint>
+        }
+        @if (form.controls.customerContactName.hasError('maxlength')) {
+          <mat-error>20文字以内で入力してください。</mat-error>
+        }
+      </mat-form-field>
+    </div>
+  </section>
+  <hr class="project-form-divider" />
+  <section class="project-form-section">
+    <h2 class="project-form-section-label">担当情報</h2>
+    <div class="project-form-section-fields">
+      <div class="project-form-field-row" formGroupName="department">
+        <mat-form-field subscriptSizing="dynamic" class="project-form-field-code">
+          <mat-label>担当部門コード</mat-label>
+          <input
+            matInput
+            formControlName="code"
+            [matAutocomplete]="departmentAuto"
+            (blur)="onDepartmentCodeBlur()" />
+          <mat-autocomplete
+            #departmentAuto="matAutocomplete"
+            (optionSelected)="onDepartmentSelected($event)">
+            @for (department of filteredDepartments(); track department.departmentCode) {
+              <mat-option [value]="department.departmentCode">
+                <span class="autocomplete-option-code">{{ department.departmentCode }}</span>
+                <span class="autocomplete-option-name">{{ department.name }}</span>
+              </mat-option>
+            }
+          </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field subscriptSizing="dynamic" class="project-form-field-name">
+          <mat-label>部門名</mat-label>
+          <input matInput formControlName="name" />
+        </mat-form-field>
+      </div>
+      <div class="project-form-field-row" formGroupName="salesStaff">
+        <mat-form-field subscriptSizing="dynamic" class="project-form-field-code">
+          <mat-label>営業担当者コード</mat-label>
+          <input
+            matInput
+            formControlName="code"
+            [matAutocomplete]="salesStaffAuto"
+            (blur)="onSalesStaffCodeBlur()" />
+          <mat-autocomplete
+            #salesStaffAuto="matAutocomplete"
+            (optionSelected)="onSalesStaffSelected($event)">
+            @for (employee of filteredSalesStaff(); track employee.employeeCode) {
+              <mat-option [value]="employee.employeeCode">
+                <span class="autocomplete-option-code">{{ employee.employeeCode }}</span>
+                <span class="autocomplete-option-name">{{ employee.name }}</span>
+              </mat-option>
+            }
+          </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field subscriptSizing="dynamic" class="project-form-field-name">
+          <mat-label>営業担当者名</mat-label>
+          <input matInput formControlName="name" />
+        </mat-form-field>
+      </div>
+      <div class="project-form-field-row" formGroupName="constructionStaff">
+        <mat-form-field subscriptSizing="dynamic" class="project-form-field-code">
+          <mat-label>工事担当者コード</mat-label>
+          <input
+            matInput
+            formControlName="code"
+            [matAutocomplete]="constructionStaffAuto"
+            (blur)="onConstructionStaffCodeBlur()" />
+          <mat-autocomplete
+            #constructionStaffAuto="matAutocomplete"
+            (optionSelected)="onConstructionStaffSelected($event)">
+            @for (employee of filteredConstructionStaff(); track employee.employeeCode) {
+              <mat-option [value]="employee.employeeCode">
+                <span class="autocomplete-option-code">{{ employee.employeeCode }}</span>
+                <span class="autocomplete-option-name">{{ employee.name }}</span>
+              </mat-option>
+            }
+          </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field subscriptSizing="dynamic" class="project-form-field-name">
+          <mat-label>工事担当者名</mat-label>
+          <input matInput formControlName="name" />
+        </mat-form-field>
+      </div>
+    </div>
+  </section>
+</form>

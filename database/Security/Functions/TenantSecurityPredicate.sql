@@ -1,0 +1,6 @@
+CREATE FUNCTION [Security].[fn_securitypredicate](@TenantId UNIQUEIDENTIFIER)
+    RETURNS TABLE
+    WITH SCHEMABINDING
+AS
+    RETURN SELECT 1 AS fn_securitypredicate_result
+    WHERE CONVERT(UNIQUEIDENTIFIER, SESSION_CONTEXT(N'TenantId')) = @TenantId;

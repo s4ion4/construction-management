@@ -1,0 +1,35 @@
+:root {
+  // Background
+  --color-bg-page: light-dark(var(--color-gray-100), var(--color-gray-950));
+  --color-bg-page-hover: light-dark(var(--color-gray-200), var(--color-gray-800));
+  --color-bg-surface: light-dark(var(--color-gray-50), var(--color-gray-900));
+  --color-bg-inset: light-dark(var(--color-gray-100), var(--color-gray-950));
+  --color-bg-elevated: light-dark(var(--color-white), var(--color-gray-800));
+  --color-bg-elevated-hover: light-dark(var(--color-gray-100), var(--color-gray-700));
+  --color-bg-ghost-hover: light-dark(
+    color-mix(in srgb, var(--color-gray-900) 6%, transparent),
+    color-mix(in srgb, var(--color-gray-100) 6%, transparent)
+  );
+  --color-bg-primary: var(--color-teal-500);
+  --color-bg-primary-hover: light-dark(var(--color-teal-600), var(--color-teal-400));
+  --color-bg-danger: var(--color-red-500);
+  --color-bg-danger-hover: light-dark(var(--color-red-600), var(--color-red-400));
+
+  // Foreground (Text and Icons)
+  --color-fg-default: light-dark(var(--color-gray-900), var(--color-gray-100));
+  --color-fg-muted: light-dark(var(--color-gray-700), var(--color-gray-300));
+  --color-fg-faint: light-dark(var(--color-gray-500), var(--color-gray-400));
+  --color-fg-disabled: light-dark(var(--color-gray-300), var(--color-gray-600));
+  --color-fg-inverse: var(--color-white);
+
+  // Border
+  --color-border-default: light-dark(var(--color-gray-200), var(--color-gray-700));
+  --color-border-default-strong: light-dark(var(--color-gray-300), var(--color-gray-600));
+
+  // Focus
+  --color-focus-ring: var(--color-teal-300);
+
+  // Shadow
+  --shadow-raised: var(--shadow-sm);
+  --shadow-floating: var(--shadow-md);
+}

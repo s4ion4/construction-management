@@ -1,0 +1,116 @@
+@use '../../../../tokens/breakpoint' as bp;
+
+.project-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 56rem;
+  padding: var(--spacing-24) var(--spacing-20);
+
+  @include bp.desktop {
+    padding: var(--spacing-40) var(--spacing-48);
+  }
+}
+
+.project-form-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--spacing-20);
+  align-items: start;
+
+  @include bp.desktop {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+    gap: var(--spacing-32);
+  }
+}
+
+.project-form-section-label {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-fg-muted);
+  white-space: nowrap;
+}
+
+.project-form-section-fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-24);
+}
+
+.project-form-field-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-24);
+
+  @include bp.desktop {
+    flex-direction: row;
+    gap: var(--spacing-16);
+    align-items: flex-start;
+  }
+}
+
+.autocomplete-option-code {
+  display: block;
+  font-size: var(--font-size-xs);
+  color: var(--color-fg-faint);
+}
+
+.autocomplete-option-name {
+  display: block;
+  padding-bottom: var(--spacing-4);
+}
+
+.project-form-field-code {
+  flex: 3;
+}
+
+.project-form-field-name {
+  flex: 7;
+}
+
+.project-form-field-project-code {
+  max-width: 15rem;
+}
+
+.project-form-field-order-date {
+  max-width: 12.5rem;
+}
+
+.project-form-field-order-type {
+  max-width: 12.5rem;
+}
+
+.project-form-field-estimate-number {
+  display: flex;
+  gap: var(--spacing-16);
+  align-items: flex-start;
+}
+
+.project-form-field-estimate-main {
+  flex: 1;
+  max-width: 15rem;
+}
+
+.project-form-field-estimate-branch {
+  max-width: 6.25rem;
+}
+
+.project-form-field-separator {
+  display: flex;
+  align-items: center;
+  height: 3rem;
+  font-weight: 500;
+  color: var(--color-fg-faint);
+}
+
+.project-form-divider {
+  visibility: hidden;
+  margin: var(--spacing-24) 0;
+  border: none;
+  border-top: 1px solid var(--color-border-default);
+
+  @include bp.desktop {
+    visibility: visible;
+    margin: var(--spacing-40) 0;
+  }
+}

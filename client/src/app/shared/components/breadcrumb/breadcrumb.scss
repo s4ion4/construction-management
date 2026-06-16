@@ -1,0 +1,52 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+
+.breadcrumb-list {
+  display: flex;
+  gap: var(--spacing-8);
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.breadcrumb-item {
+  display: flex;
+  gap: var(--spacing-8);
+  align-items: center;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+
+  &:last-child {
+    min-width: 0;
+  }
+}
+
+.breadcrumb-link {
+  color: var(--color-fg-faint);
+  white-space: nowrap;
+  text-decoration: none;
+  transition: color 0.15s ease;
+
+  &:hover {
+    color: var(--color-fg-muted);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 2px;
+  }
+}
+
+.breadcrumb-current {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--color-fg-muted);
+  white-space: nowrap;
+}
+
+.breadcrumb-separator {
+  color: var(--color-fg-faint);
+}

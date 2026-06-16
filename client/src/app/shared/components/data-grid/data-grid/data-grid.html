@@ -1,0 +1,44 @@
+<ag-grid-angular
+  class="data-grid"
+  [theme]="theme"
+  [rowData]="rows()"
+  [columnDefs]="columnDefs()"
+  [rowSelection]="rowSelection()"
+  [selectionColumnDef]="selectionColumnDef"
+  [loading]="loading()"
+  [quickFilterText]="quickFilterText()"
+  [initialState]="initialState()"
+  [suppressColumnMoveAnimation]="suppressColumnMoveAnimation()"
+  [pagination]="true"
+  [paginationPageSize]="paginationPageSize()"
+  [suppressPaginationPanel]="true"
+  [tooltipShowDelay]="200"
+  [enableFilterHandlers]="true"
+  [localeText]="localeText"
+  (gridReady)="onGridReady($event)"
+  (firstDataRendered)="onFirstDataRendered()"
+  (paginationChanged)="onPaginationChanged()"
+  (selectionChanged)="onSelectionChanged($event)"
+  (filterChanged)="onFilterChanged($event)"
+  (dragStopped)="onDragStopped($event)"
+  (sortChanged)="onSortChanged($event)" />
+<app-grid-paginator
+  [currentPage]="currentPage()"
+  [totalPages]="totalPages()"
+  [pageSize]="paginationPageSize()"
+  [totalRows]="totalRows()"
+  [pageSizeOptions]="pageSizeOptions"
+  (pageChange)="onPageChange($event)"
+  (pageSizeChange)="onPageSizeChange($event)">
+  @if (isFiltered()) {
+    <button
+      app-button
+      variant="tertiary"
+      size="small"
+      icon="filter_alt_off"
+      type="button"
+      (click)="onResetFilters()">
+      フィルターをリセット
+    </button>
+  }
+</app-grid-paginator>

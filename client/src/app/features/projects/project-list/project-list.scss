@@ -1,0 +1,53 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.project-list {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.project-list-new-button {
+  margin-left: auto;
+}
+
+.project-list-content {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--spacing-16);
+  padding: var(--spacing-16);
+}
+
+.project-list-toolbar {
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--spacing-8);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.project-list-toolbar-search {
+  flex: 1;
+  max-width: 640px;
+}
+
+.project-list-toolbar-actions {
+  display: flex;
+  gap: var(--spacing-6);
+  align-items: center;
+  padding: 0 var(--spacing-4);
+}
+
+.project-list-error-state {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}

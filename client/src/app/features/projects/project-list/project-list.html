@@ -1,0 +1,48 @@
+<app-loading class="project-list" [loading]="showSubmitting()">
+  <header app-page-header [title]="'工事一覧'" (menuToggle)="layoutService.openDrawer()">
+    <a class="project-list-new-button" app-button icon="add" routerLink="/projects/new">新規登録</a>
+  </header>
+  <div class="project-list-content">
+    <div class="project-list-toolbar">
+      <app-search-input
+        class="project-list-toolbar-search"
+        [(value)]="searchQuery"
+        ariaLabel="工事を検索" />
+      <div class="project-list-toolbar-actions">
+        <button
+          app-icon-button
+          icon="tune"
+          aria-label="列の表示設定"
+          matTooltip="列の表示設定"
+          (click)="openColumnSettings()"></button>
+        <button
+          app-icon-button
+          icon="download"
+          aria-label="CSVエクスポート"
+          matTooltip="CSVエクスポート"
+          (click)="exportCsv()"></button>
+      </div>
+    </div>
+    @if (projectsResource.error()) {
+      <div class="project-list-error-state" role="alert">
+        <app-empty-state
+          icon="cloud_off"
+          title="データを読み込めませんでした"
+          description="サーバーとの通信中に問題が発生しました。しばらくしてからもう一度お試しください。" />
+      </div>
+    } @else {
+      <app-data-grid
+        [rows]="projectsResource.value()"
+        [columnDefs]="columnDefs"
+        [rowSelection]="rowSelection"
+        [loading]="projectsResource.isLoading()"
+        [quickFilterText]="searchQuery()"
+        (selectionChanged)="onSelectionChanged($event)"
+        storageKey="project-list" />
+      <app-bulk-action-bar
+        [selectedCount]="selectedRows().length"
+        [actions]="bulkActions()"
+        (clear)="onClearSelection()" />
+    }
+  </div>
+</app-loading>

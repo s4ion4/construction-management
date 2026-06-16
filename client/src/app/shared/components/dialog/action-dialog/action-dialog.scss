@@ -1,0 +1,12 @@
+.dialog-title {
+  margin: 0;
+}
+
+.dialog-message {
+  white-space: pre-line;
+}
+
+.dialog-action-buttons {
+  display: flex;
+  gap: var(--spacing-8);
+}

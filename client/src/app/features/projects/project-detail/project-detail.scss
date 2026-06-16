@@ -1,0 +1,67 @@
+@use '../../../../tokens/breakpoint' as bp;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.project-detail {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.project-detail-header {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.project-detail-divider {
+  width: 1px;
+  height: 1rem;
+  margin: 0 var(--spacing-16);
+  background-color: var(--color-border-default);
+}
+
+.project-detail-error-state {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-detail-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-anchor: none;
+}
+
+.project-detail-actions {
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--spacing-8);
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-12) var(--spacing-20);
+  border-top: 1px solid var(--color-border-default);
+}
+
+.project-detail-actions-secondary {
+  display: flex;
+  gap: var(--spacing-6);
+  align-items: center;
+}
+
+.project-detail-actions-primary {
+  display: flex;
+  gap: var(--spacing-8);
+  align-items: center;
+  margin-left: auto;
+}

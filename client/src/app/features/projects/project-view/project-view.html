@@ -1,0 +1,77 @@
+<div class="project-view">
+  <section class="project-view-section">
+    <h2 class="project-view-section-label">基本情報</h2>
+    <div class="project-view-fields">
+      <app-display-field
+        label="工事コード"
+        class="project-view-field-project-code"
+        [value]="project().projectCode" />
+      <app-display-field label="工事名" [value]="project().name" />
+      <app-display-field
+        label="受注日"
+        class="project-view-field-order-date"
+        [value]="project().orderDate | date: 'yyyy/MM/dd'" />
+      <app-display-field
+        label="受注区分"
+        class="project-view-field-order-type"
+        [value]="project().orderType | orderType" />
+      <app-display-field
+        label="見積番号"
+        class="project-view-field-estimate-number"
+        [value]="project().estimateNumber | estimateNumber" />
+    </div>
+  </section>
+  <hr class="project-view-divider" />
+  <section class="project-view-section">
+    <h2 class="project-view-section-label">得意先情報</h2>
+    <div class="project-view-fields">
+      <div class="project-view-field-row">
+        <app-display-field
+          label="得意先コード"
+          class="project-view-field-code"
+          [value]="project().customer.code" />
+        <app-display-field
+          label="得意先名"
+          class="project-view-field-name"
+          [value]="project().customer.name" />
+      </div>
+      <app-display-field label="客先担当者" [value]="project().customerContactPerson" />
+    </div>
+  </section>
+  <hr class="project-view-divider" />
+  <section class="project-view-section">
+    <h2 class="project-view-section-label">担当情報</h2>
+    <div class="project-view-fields">
+      <div class="project-view-field-row">
+        <app-display-field
+          label="担当部門コード"
+          class="project-view-field-code"
+          [value]="project().department?.code" />
+        <app-display-field
+          label="部門名"
+          class="project-view-field-name"
+          [value]="project().department?.name" />
+      </div>
+      <div class="project-view-field-row">
+        <app-display-field
+          label="営業担当者コード"
+          class="project-view-field-code"
+          [value]="project().salesStaff?.code" />
+        <app-display-field
+          label="営業担当者名"
+          class="project-view-field-name"
+          [value]="project().salesStaff?.name" />
+      </div>
+      <div class="project-view-field-row">
+        <app-display-field
+          label="工事担当者コード"
+          class="project-view-field-code"
+          [value]="project().constructionStaff?.code" />
+        <app-display-field
+          label="工事担当者名"
+          class="project-view-field-name"
+          [value]="project().constructionStaff?.name" />
+      </div>
+    </div>
+  </section>
+</div>

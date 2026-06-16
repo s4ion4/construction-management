@@ -1,0 +1,9 @@
+<app-icon class="search-input-icon" name="search" size="sm" />
+<input
+  #searchInput
+  class="search-input-field"
+  type="text"
+  [placeholder]="placeholder()"
+  [attr.aria-label]="ariaLabel()"
+  [value]="value()"
+  (input)="value.set(searchInput.value)" />

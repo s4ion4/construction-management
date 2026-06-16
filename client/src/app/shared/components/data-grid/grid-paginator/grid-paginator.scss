@@ -1,0 +1,108 @@
+@use '../../../../../tokens/breakpoint' as bp;
+
+.grid-paginator {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-6) var(--spacing-24);
+  align-items: center;
+  justify-content: flex-end;
+  padding: var(--spacing-4) var(--spacing-12);
+  font-size: var(--font-size-xs);
+  color: var(--color-fg-muted);
+  border: 1px solid var(--color-border-default);
+  border-top: none;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+
+  @include bp.desktop {
+    flex-wrap: nowrap;
+  }
+}
+
+.grid-paginator-actions {
+  flex: 1;
+}
+
+.grid-paginator-size {
+  display: flex;
+  gap: var(--spacing-6);
+  align-items: center;
+  white-space: nowrap;
+}
+
+.grid-paginator-select-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.grid-paginator-select {
+  min-width: 3.5rem;
+  padding: 2px var(--spacing-20) 2px var(--spacing-8);
+  font-size: inherit;
+  color: inherit;
+  appearance: none;
+  cursor: pointer;
+  outline: none;
+  background: transparent;
+  border: 1px solid var(--color-border-default-strong);
+  border-radius: var(--radius-sm);
+
+  option {
+    color: var(--color-fg-default);
+    background-color: var(--color-bg-elevated);
+  }
+
+  &:focus {
+    border-color: var(--color-focus-ring);
+    box-shadow: 0 0 0 1px var(--color-focus-ring);
+    transition:
+      border-color 150ms ease,
+      box-shadow 150ms ease;
+  }
+}
+
+.grid-paginator-select-icon {
+  position: absolute;
+  right: var(--spacing-4);
+  font-size: 1rem;
+  color: var(--color-fg-faint);
+  pointer-events: none;
+}
+
+.grid-paginator-range {
+  display: flex;
+  gap: var(--spacing-8);
+  white-space: nowrap;
+}
+
+.grid-paginator-nav {
+  display: flex;
+  align-items: center;
+}
+
+.grid-paginator-page {
+  padding: 0 var(--spacing-6);
+  white-space: nowrap;
+}
+
+.grid-paginator-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-4);
+  color: var(--color-fg-faint);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+
+  &:hover:not(:disabled) {
+    color: var(--color-fg-default);
+    background: var(--color-bg-page-hover);
+  }
+
+  &:disabled {
+    color: var(--color-fg-disabled);
+    cursor: default;
+  }
+}

@@ -1,0 +1,41 @@
+@use '../../../../tokens/breakpoint' as bp;
+
+.layout-wrapper {
+  display: flex;
+  height: 100vh;
+}
+
+.layout-main {
+  flex: 1;
+  min-width: 0;
+  margin: var(--spacing-8);
+  overflow: hidden;
+  background-color: var(--color-bg-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-raised);
+
+  @include bp.desktop {
+    margin-left: 0;
+  }
+}
+
+.layout-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  visibility: hidden;
+  background-color: light-dark(hsl(0 0% 0% / 30%), hsl(0 0% 0% / 50%));
+  opacity: 0;
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease allow-discrete;
+
+  &.is-visible {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  @include bp.desktop {
+    display: none;
+  }
+}

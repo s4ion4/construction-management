@@ -1,0 +1,11 @@
+<button
+  class="page-header-toggle"
+  type="button"
+  aria-label="メニューを開く"
+  (click)="menuToggle.emit()">
+  <app-icon class="page-header-icon" name="left_panel_open" size="md" />
+</button>
+@if (title(); as title) {
+  <h1 class="page-header-title">{{ title }}</h1>
+}
+<ng-content />

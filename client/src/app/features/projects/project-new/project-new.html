@@ -1,0 +1,16 @@
+<app-loading class="project-new" [loading]="showSubmitting()">
+  <header app-page-header (menuToggle)="layoutService.openDrawer()">
+    <app-breadcrumb [items]="breadcrumbs" />
+  </header>
+  <div class="project-new-body" cdkScrollable>
+    <app-project-form (submitted)="onSubmitted($event)" />
+  </div>
+  <div class="project-new-actions">
+    <button app-button variant="secondary" [disabled]="isSubmitting()" (click)="onCancelled()">
+      キャンセル
+    </button>
+    <button app-button variant="primary" [disabled]="isSubmitting()" (click)="onSave()">
+      保存
+    </button>
+  </div>
+</app-loading>

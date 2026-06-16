@@ -1,0 +1,59 @@
+:host {
+  display: inline-flex;
+}
+
+.icon {
+  &[data-size='sm'] {
+    font-size: 1rem;
+    font-variation-settings:
+      'opsz' 20,
+      'FILL' 0;
+  }
+
+  &[data-size='md'] {
+    font-size: 1.25rem;
+    font-variation-settings:
+      'opsz' 20,
+      'FILL' 0;
+  }
+
+  &[data-size='lg'] {
+    font-size: 1.5rem;
+    font-variation-settings:
+      'opsz' 24,
+      'FILL' 0;
+  }
+
+  &[data-size='xl'] {
+    font-size: 2rem;
+    font-variation-settings:
+      'opsz' 32,
+      'FILL' 0;
+  }
+
+  &[data-filled] {
+    &[data-size='sm'] {
+      font-variation-settings:
+        'opsz' 20,
+        'FILL' 1;
+    }
+
+    &[data-size='md'] {
+      font-variation-settings:
+        'opsz' 20,
+        'FILL' 1;
+    }
+
+    &[data-size='lg'] {
+      font-variation-settings:
+        'opsz' 24,
+        'FILL' 1;
+    }
+
+    &[data-size='xl'] {
+      font-variation-settings:
+        'opsz' 32,
+        'FILL' 1;
+    }
+  }
+}

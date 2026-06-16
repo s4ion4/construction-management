@@ -1,0 +1,11 @@
+<div class="layout-wrapper">
+  <div
+    class="layout-backdrop"
+    [class.is-visible]="layoutService.drawerOpen()"
+    aria-hidden="true"
+    (click)="layoutService.closeDrawer()"></div>
+  <app-side-nav></app-side-nav>
+  <main class="layout-main">
+    <router-outlet></router-outlet>
+  </main>
+</div>

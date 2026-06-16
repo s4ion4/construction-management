@@ -1,0 +1,74 @@
+<h2 mat-dialog-title class="dialog-title">列の表示設定</h2>
+<mat-dialog-content>
+  <div class="column-settings-lists">
+    <section class="column-settings-section" aria-labelledby="visible-heading">
+      <h3 id="visible-heading" class="column-settings-heading">
+        表示中
+        <span class="column-settings-heading-hint">(ドラッグで並び替え)</span>
+      </h3>
+      <div
+        [id]="visibleListId"
+        cdkDropList
+        [cdkDropListData]="visibleColumns()"
+        [cdkDropListConnectedTo]="connectedLists"
+        (cdkDropListDropped)="onDrop($event)"
+        class="column-settings-list">
+        @for (col of pinnedColumns(); track col.key) {
+          <div class="column-settings-item column-settings-item-pinned">
+            <app-icon class="column-settings-handle" name="push_pin" size="md" />
+            <span class="column-settings-item-label">{{ col.label }}</span>
+          </div>
+        }
+        @for (col of visibleColumns(); track col.key) {
+          <div cdkDrag class="column-settings-item">
+            <app-icon class="column-settings-handle" name="drag_indicator" size="md" />
+            <span class="column-settings-item-label">{{ col.label }}</span>
+          </div>
+        }
+        @if (pinnedColumns().length === 0 && visibleColumns().length === 0) {
+          <div class="column-settings-list-empty">
+            <app-icon class="column-settings-list-empty-icon" name="format_list_bulleted" size="lg" />
+            <p class="column-settings-list-empty-text">項目がありません</p>
+          </div>
+        }
+      </div>
+    </section>
+    <section class="column-settings-section" aria-labelledby="hidden-heading">
+      <h3 id="hidden-heading" class="column-settings-heading">非表示</h3>
+      <div
+        [id]="hiddenListId"
+        cdkDropList
+        [cdkDropListData]="hiddenColumns()"
+        [cdkDropListConnectedTo]="connectedLists"
+        (cdkDropListDropped)="onDrop($event)"
+        class="column-settings-list">
+        @for (col of hiddenColumns(); track col.key) {
+          <div cdkDrag class="column-settings-item">
+            <app-icon class="column-settings-handle" name="drag_indicator" size="md" />
+            <span class="column-settings-item-label">{{ col.label }}</span>
+          </div>
+        } @empty {
+          <div class="column-settings-list-empty">
+            <app-icon class="column-settings-list-empty-icon" name="move_item" size="lg" />
+            <p class="column-settings-list-empty-text">
+              こちら側へのドラッグで<br />非表示にできます
+            </p>
+          </div>
+        }
+      </div>
+    </section>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <div class="column-settings-actions">
+    <button app-button [variant]="'tertiary'" type="button" (click)="onReset()">
+      初期設定に戻す
+    </button>
+    <div class="column-settings-confirm-actions">
+      <button app-button [variant]="'secondary'" type="button" mat-dialog-close cdkFocusInitial>
+        キャンセル
+      </button>
+      <button app-button [variant]="'primary'" type="button" (click)="onApply()">適用</button>
+    </div>
+  </div>
+</mat-dialog-actions>

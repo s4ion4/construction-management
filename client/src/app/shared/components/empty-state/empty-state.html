@@ -1,0 +1,7 @@
+<span class="empty-state-icon-wrapper">
+  <app-icon class="empty-state-icon" [name]="icon()" size="lg" />
+</span>
+<p class="empty-state-title">{{ title() }}</p>
+@if (description()) {
+  <p class="empty-state-description">{{ description() }}</p>
+}

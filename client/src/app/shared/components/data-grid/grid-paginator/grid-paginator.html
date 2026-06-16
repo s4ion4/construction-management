@@ -1,0 +1,51 @@
+<div class="grid-paginator">
+  <div class="grid-paginator-actions">
+    <ng-content />
+  </div>
+  <label class="grid-paginator-size">
+    表示件数：
+    <span class="grid-paginator-select-wrapper">
+      <select class="grid-paginator-select" (change)="onPageSizeChange($event)">
+        @for (option of pageSizeOptions(); track option) {
+          <option [value]="option" [selected]="option === pageSize()">{{ option }}</option>
+        }
+      </select>
+      <app-icon class="grid-paginator-select-icon" name="expand_more" size="sm" />
+    </span>
+  </label>
+  <div class="grid-paginator-range">
+    <span>全 {{ totalRows() }} 件中</span>
+    <span>{{ startRow() }} - {{ endRow() }} 件</span>
+  </div>
+  <div class="grid-paginator-nav">
+    <button
+      class="grid-paginator-button"
+      [disabled]="isFirstPage()"
+      (click)="goToFirst()"
+      aria-label="最初のページ">
+      <app-icon name="first_page" size="md" />
+    </button>
+    <button
+      class="grid-paginator-button"
+      [disabled]="isFirstPage()"
+      (click)="goToPrevious()"
+      aria-label="前のページ">
+      <app-icon name="chevron_left" size="md" />
+    </button>
+    <span class="grid-paginator-page"> {{ displayPage() }} / {{ totalPages() }} ページ </span>
+    <button
+      class="grid-paginator-button"
+      [disabled]="isLastPage()"
+      (click)="goToNext()"
+      aria-label="次のページ">
+      <app-icon name="chevron_right" size="md" />
+    </button>
+    <button
+      class="grid-paginator-button"
+      [disabled]="isLastPage()"
+      (click)="goToLast()"
+      aria-label="最後のページ">
+      <app-icon name="last_page" size="md" />
+    </button>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="api/ConstructionManagement.Api/ConstructionManagement.Api.csproj" />
+  <Project Path="api/ConstructionManagement.Api.UnitTests/ConstructionManagement.Api.UnitTests.csproj" />
+  <Project Path="api/ConstructionManagement.Api.IntegrationTests/ConstructionManagement.Api.IntegrationTests.csproj" />
+  <Project Path="database/ConstructionManagement.Database.sqlproj" Id="86373416-d138-424e-b14f-71db32f67232">
+    <Build />
+    <Deploy />
+  </Project>
+</Solution>

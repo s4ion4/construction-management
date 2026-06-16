@@ -1,0 +1,99 @@
+@use '@angular/material' as mat;
+
+html {
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: (
+        plain-family: (
+          'Noto Sans JP',
+          system-ui,
+          sans-serif,
+        ),
+      ),
+      density: 0,
+    )
+  );
+  @include mat.theme-overrides(
+    (
+      primary: light-dark(var(--color-teal-400), var(--color-teal-300)),
+      on-primary: light-dark(var(--color-white), var(--color-gray-900)),
+      surface: light-dark(var(--color-white), var(--color-gray-800)),
+      surface-variant: light-dark(var(--color-gray-100), var(--color-gray-950)),
+      on-surface: light-dark(var(--color-gray-900), var(--color-gray-300)),
+      on-surface-variant: light-dark(var(--color-gray-400), var(--color-gray-500)),
+      error: light-dark(var(--color-red-500), var(--color-red-300)),
+    )
+  );
+  @include mat.dialog-overrides(
+    (
+      actions-padding: var(--spacing-24),
+      container-elevation-shadow: var(--shadow-md),
+      container-shape: var(--radius-xl),
+      headline-padding: 0 var(--spacing-24) var(--spacing-24),
+      with-actions-content-padding: 0 var(--spacing-24),
+      supporting-text-color: light-dark(var(--color-gray-700), var(--color-gray-300)),
+      subhead-line-height: 1.5,
+      subhead-size: var(--font-size-md),
+      subhead-weight: 500,
+      supporting-text-line-height: 1.5,
+      supporting-text-size: var(--font-size-sm),
+    )
+  );
+  @include mat.form-field-overrides(
+    (
+      filled-disabled-active-indicator-color: light-dark(
+          var(--color-gray-400),
+          var(--color-gray-700)
+        ),
+      filled-disabled-container-color: light-dark(var(--color-gray-200), var(--color-gray-950)),
+      filled-disabled-input-text-color: light-dark(var(--color-gray-400), var(--color-gray-600)),
+      filled-disabled-label-text-color: light-dark(var(--color-gray-400), var(--color-gray-600)),
+      container-text-line-height: 1.25rem,
+      container-text-size: var(--font-size-sm),
+      filled-label-text-size: var(--font-size-sm),
+      container-height: 3rem,
+      container-vertical-padding: var(--spacing-12),
+      filled-with-label-container-padding-top: var(--spacing-20),
+      filled-with-label-container-padding-bottom: var(--spacing-6),
+    )
+  );
+  @include mat.datepicker-overrides(
+    (
+      calendar-container-elevation-shadow: var(--shadow-md),
+      calendar-container-background-color: light-dark(var(--color-white), var(--color-gray-900)),
+      calendar-date-focus-state-background-color: light-dark(
+          var(--color-teal-100),
+          var(--color-teal-800)
+        ),
+      calendar-date-hover-state-background-color: light-dark(
+          var(--color-teal-50),
+          var(--color-teal-900)
+        ),
+      toggle-icon-color: light-dark(var(--color-gray-500), var(--color-gray-400)),
+    )
+  );
+  @include mat.select-overrides(
+    (
+      container-elevation-shadow: var(--shadow-md),
+      panel-background-color: light-dark(var(--color-white), var(--color-gray-900)),
+      enabled-arrow-color: light-dark(var(--color-gray-500), var(--color-gray-400)),
+      trigger-text-line-height: 1.25rem,
+      trigger-text-size: var(--font-size-sm),
+    )
+  );
+  @include mat.autocomplete-overrides(
+    (
+      background-color: light-dark(var(--color-white), var(--color-gray-900)),
+      container-elevation-shadow: var(--shadow-md),
+    )
+  );
+}
+
+// GitHub Issue: https://github.com/angular/components/issues/24446
+.mat-mdc-select-arrow-wrapper {
+  height: 22px !important;
+}

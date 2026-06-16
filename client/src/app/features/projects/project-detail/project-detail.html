@@ -1,0 +1,95 @@
+<app-loading class="project-detail" [loading]="isLoading() || showSubmitting()">
+  <header app-page-header (menuToggle)="layoutService.openDrawer()">
+    <div class="project-detail-header">
+      <app-breadcrumb [items]="breadcrumbs()" />
+      @if (projectResource.hasValue()) {
+        <div class="project-detail-divider" aria-hidden="true"></div>
+        <app-status-dot
+          [label]="isApproved() ? '承認済' : '未承認'"
+          [status]="isApproved() ? 'success' : 'default'" />
+      }
+    </div>
+  </header>
+  @if (projectResource.error()) {
+    <div class="project-detail-error-state" role="alert">
+      @if (isNotFound()) {
+        <app-empty-state
+          icon="search_off"
+          title="工事が見つかりません"
+          description="お探しの工事が見つかりませんでした。" />
+      } @else {
+        <app-empty-state
+          icon="cloud_off"
+          title="データを読み込めませんでした"
+          description="サーバーとの通信中に問題が発生しました。しばらくしてからもう一度お試しください。" />
+      }
+    </div>
+  } @else if (projectResource.value(); as project) {
+    <div class="project-detail-body" cdkScrollable>
+      @if (mode() === 'edit') {
+        <app-project-form [project]="project" (submitted)="onSubmitted($event)" />
+      } @else {
+        <app-project-view [project]="project" />
+      }
+    </div>
+    <div class="project-detail-actions">
+      @if (mode() === 'edit') {
+        <div class="project-detail-actions-primary">
+          <button
+            app-button
+            variant="secondary"
+            [disabled]="isSubmitting()"
+            (click)="onEditCancelled()">
+            キャンセル
+          </button>
+          <button app-button variant="primary" [disabled]="isSubmitting()" (click)="onSave()">
+            保存
+          </button>
+        </div>
+      } @else {
+        <div class="project-detail-actions-secondary">
+          @if (isApproved()) {
+            <button
+              app-icon-button
+              icon="archive"
+              aria-label="アーカイブ"
+              [matTooltip]="'アーカイブ'"
+              (click)="onArchive()"></button>
+            <button
+              app-icon-button
+              icon="undo"
+              aria-label="未承認に戻す"
+              [matTooltip]="'未承認に戻す'"
+              (click)="onRevoke()"></button>
+            <span [matTooltip]="'承認済みのため編集できません'">
+              <button
+                app-icon-button
+                icon="edit"
+                aria-label="承認済みのため編集できません"
+                disabled></button>
+            </span>
+          } @else {
+            <button
+              app-icon-button
+              icon="delete"
+              aria-label="削除"
+              [matTooltip]="'削除'"
+              (click)="onDelete()"></button>
+            <button
+              app-icon-button
+              icon="edit"
+              aria-label="編集"
+              [matTooltip]="'編集'"
+              (click)="onEdit()"></button>
+          }
+        </div>
+        <div class="project-detail-actions-primary">
+          <button app-button [variant]="'secondary'" (click)="onBackToList()">一覧に戻る</button>
+          @if (!isApproved()) {
+            <button app-button [variant]="'primary'" (click)="onApprove()">承認</button>
+          }
+        </div>
+      }
+    </div>
+  }
+</app-loading>

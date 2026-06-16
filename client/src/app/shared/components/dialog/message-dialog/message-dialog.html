@@ -1,0 +1,9 @@
+<h2 mat-dialog-title class="dialog-title">{{ data.title }}</h2>
+<mat-dialog-content>
+  <p class="dialog-message">{{ data.message }}</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button app-button [variant]="'primary'" (click)="onClose()">
+    {{ closeButtonLabel }}
+  </button>
+</mat-dialog-actions>

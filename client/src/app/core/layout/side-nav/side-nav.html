@@ -1,0 +1,98 @@
+<nav
+  class="side-nav"
+  [class.is-collapsed]="layoutService.sideNavCollapsed()"
+  [class.is-drawer-open]="layoutService.drawerOpen()"
+  [class.is-animating]="layoutService.drawerAnimating()"
+  (transitionend)="onDrawerTransitionEnd($event)"
+  aria-label="ナビゲーション">
+  <div class="side-nav-header">
+    <a
+      class="side-nav-header-logo"
+      routerLink="/projects"
+      aria-label="ホーム"
+      (click)="layoutService.closeDrawer()">
+      <app-logo class="side-nav-header-logo-image" />
+    </a>
+    <button
+      class="side-nav-toggle"
+      type="button"
+      [attr.aria-label]="
+        layoutService.sideNavCollapsed() ? 'サイドナビを開く' : 'サイドナビを閉じる'
+      "
+      (click)="layoutService.toggleSideNavCollapse()">
+      <app-icon
+        class="side-nav-icon"
+        [name]="layoutService.sideNavCollapsed() ? 'left_panel_open' : 'left_panel_close'"
+        size="md" />
+    </button>
+  </div>
+  <ul class="side-nav-content">
+    @for (item of navItems; track item.routerLink) {
+      <li>
+        <a
+          class="nav-link"
+          [routerLink]="item.routerLink"
+          routerLinkActive="is-active"
+          [matTooltip]="item.label"
+          [matTooltipDisabled]="!layoutService.sideNavCollapsed() || layoutService.drawerOpen()"
+          matTooltipPosition="right"
+          (click)="layoutService.closeDrawer()">
+          <app-icon class="side-nav-icon" [name]="item.icon" size="md" />
+          <span class="nav-label">{{ item.label }}</span>
+        </a>
+      </li>
+    }
+  </ul>
+  <div class="side-nav-footer">
+    <button
+      ngMenuTrigger
+      #origin
+      #trigger="ngMenuTrigger"
+      [menu]="userMenu()"
+      type="button"
+      class="side-nav-user"
+      [class.is-open]="trigger.expanded()">
+      <app-icon class="side-nav-icon" name="account_circle" size="md" />
+      <div class="side-nav-user-info">
+        <span class="side-nav-user-name">{{ user.name }}</span>
+        <span class="side-nav-user-email">{{ user.email }}</span>
+      </div>
+      <app-icon class="side-nav-icon side-nav-user-chevron" name="keyboard_arrow_up" size="md" />
+    </button>
+    <ng-template
+      [cdkConnectedOverlay]="{ origin, usePopover: 'inline' }"
+      [cdkConnectedOverlayOpen]="trigger.expanded()"
+      [cdkConnectedOverlayPositions]="userMenuPositions"
+      cdkAttachPopoverAsChild>
+      <div
+        ngMenu
+        #userMenu="ngMenu"
+        class="user-menu"
+        aria-label="ユーザーメニュー"
+        (itemSelected)="onItemSelected($event)">
+        <ng-template ngMenuContent>
+          <div class="user-menu-profile" aria-hidden="true">
+            <span class="user-menu-profile-name">{{ user.name }}</span>
+            <span class="user-menu-profile-email">{{ user.email }}</span>
+          </div>
+          <hr class="user-menu-divider" />
+          <div class="user-menu-items">
+            <div ngMenuItem value="toggleTheme" class="user-menu-item">
+              <app-icon
+                class="side-nav-icon"
+                [name]="themeService.isDarkMode() ? 'light_mode' : 'dark_mode'"
+                size="md" />
+              <span>
+                {{ themeService.isDarkMode() ? 'ライトモードに切替' : 'ダークモードに切替' }}
+              </span>
+            </div>
+            <div ngMenuItem value="signOut" class="user-menu-item">
+              <app-icon class="side-nav-icon" name="logout" size="md" />
+              <span>サインアウト</span>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </ng-template>
+  </div>
+</nav>

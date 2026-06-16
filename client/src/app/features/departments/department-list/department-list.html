@@ -1,0 +1,40 @@
+<div class="department-list">
+  <header app-page-header [title]="'部門一覧'" (menuToggle)="layoutService.openDrawer()"></header>
+  <div class="department-list-content">
+    <div class="department-list-toolbar">
+      <app-search-input
+        class="department-list-toolbar-search"
+        [(value)]="searchQuery"
+        ariaLabel="部門を検索" />
+      <div class="department-list-toolbar-actions">
+        <button
+          app-icon-button
+          icon="tune"
+          aria-label="列の表示設定"
+          matTooltip="列の表示設定"
+          (click)="openColumnSettings()"></button>
+        <button
+          app-icon-button
+          icon="download"
+          aria-label="CSVエクスポート"
+          matTooltip="CSVエクスポート"
+          (click)="exportCsv()"></button>
+      </div>
+    </div>
+    @if (departmentsResource.error()) {
+      <div class="department-list-error-state" role="alert">
+        <app-empty-state
+          icon="cloud_off"
+          title="データを読み込めませんでした"
+          description="サーバーとの通信中に問題が発生しました。しばらくしてからもう一度お試しください。" />
+      </div>
+    } @else {
+      <app-data-grid
+        [rows]="departmentsResource.value()"
+        [columnDefs]="columnDefs"
+        [loading]="departmentsResource.isLoading()"
+        [quickFilterText]="searchQuery()"
+        storageKey="department-list" />
+    }
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="employee-list">
+  <header app-page-header [title]="'社員一覧'" (menuToggle)="layoutService.openDrawer()"></header>
+  <div class="employee-list-content">
+    <div class="employee-list-toolbar">
+      <app-search-input
+        class="employee-list-toolbar-search"
+        [(value)]="searchQuery"
+        ariaLabel="社員を検索" />
+      <div class="employee-list-toolbar-actions">
+        <button
+          app-icon-button
+          icon="tune"
+          aria-label="列の表示設定"
+          matTooltip="列の表示設定"
+          (click)="openColumnSettings()"></button>
+        <button
+          app-icon-button
+          icon="download"
+          aria-label="CSVエクスポート"
+          matTooltip="CSVエクスポート"
+          (click)="exportCsv()"></button>
+      </div>
+    </div>
+    @if (employeesResource.error()) {
+      <div class="employee-list-error-state" role="alert">
+        <app-empty-state
+          icon="cloud_off"
+          title="データを読み込めませんでした"
+          description="サーバーとの通信中に問題が発生しました。しばらくしてからもう一度お試しください。" />
+      </div>
+    } @else {
+      <app-data-grid
+        [rows]="employeesResource.value()"
+        [columnDefs]="columnDefs"
+        [loading]="employeesResource.isLoading()"
+        [quickFilterText]="searchQuery()"
+        storageKey="employee-list" />
+    }
+  </div>
+</div>

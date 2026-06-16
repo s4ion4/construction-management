@@ -1,0 +1,40 @@
+.employee-list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.employee-list-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--spacing-16);
+  padding: var(--spacing-16);
+}
+
+.employee-list-toolbar {
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--spacing-8);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.employee-list-toolbar-search {
+  flex: 1;
+  max-width: 640px;
+}
+
+.employee-list-toolbar-actions {
+  display: flex;
+  gap: var(--spacing-6);
+  align-items: center;
+  padding: 0 var(--spacing-4);
+}
+
+.employee-list-error-state {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}

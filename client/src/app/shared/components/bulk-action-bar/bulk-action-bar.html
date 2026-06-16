@@ -1,0 +1,25 @@
+<div class="bulk-action-bar" role="toolbar">
+  <span class="bulk-action-bar-count">{{ selectedCount() }} 件を選択中</span>
+  <span class="bulk-action-bar-divider" aria-hidden="true"></span>
+  <div class="bulk-action-bar-actions">
+    @for (action of actions(); track $index) {
+      @let tooltip = action.disabled ? action.disabledTooltip : action.tooltip;
+      <span [matTooltip]="tooltip ?? ''">
+        <button
+          app-icon-button
+          [icon]="action.icon"
+          [attr.aria-label]="action.tooltip"
+          [disabled]="action.disabled ?? false"
+          (click)="action.onAction()"></button>
+      </span>
+    }
+  </div>
+  <button
+    app-icon-button
+    variant="ghost"
+    class="bulk-action-bar-clear"
+    icon="close"
+    aria-label="選択をクリア"
+    [matTooltip]="'選択をクリア'"
+    (click)="clear.emit()"></button>
+</div>

@@ -1,0 +1,26 @@
+<div class="checkbox-filter">
+  <label class="checkbox-filter-option">
+    <input
+      type="checkbox"
+      class="checkbox-filter-input"
+      [checked]="isAllSelected()"
+      [indeterminate]="isPartiallySelected()"
+      (change)="onAllToggle($event)" />
+    <span class="checkbox-filter-label">すべて選択</span>
+  </label>
+  <hr class="checkbox-filter-divider" />
+  <ul class="checkbox-filter-list">
+    @for (option of options(); track option.value) {
+      <li>
+        <label class="checkbox-filter-option">
+          <input
+            type="checkbox"
+            class="checkbox-filter-input"
+            [checked]="isOptionChecked(option.value)"
+            (change)="onOptionToggle(option.value, $event)" />
+          <span class="checkbox-filter-label">{{ option.label }}</span>
+        </label>
+      </li>
+    }
+  </ul>
+</div>

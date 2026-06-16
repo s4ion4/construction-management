@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[Tenant]
+(
+    [Id] UNIQUEIDENTIFIER NOT NULL,
+    [Name] NVARCHAR(100) NOT NULL,
+    [CreatedAt] DATETIME2(7) NOT NULL,
+    [UpdatedAt] DATETIME2(7) NOT NULL,
+    CONSTRAINT [PK_Tenant] PRIMARY KEY ([Id]),
+)
