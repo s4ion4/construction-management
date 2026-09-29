@@ -4,10 +4,14 @@ namespace ConstructionManagement.Api.Domain.Customers
 {
     public class Customer : Entity<Guid>
     {
-        public Guid TenantId { get; }
-        public CustomerCode CustomerCode { get; }
-        public string Name { get; }
-        public CustomerStatus Status { get; }
+        public Guid TenantId { get; private set; }
+        public CustomerCode CustomerCode { get; private set; } = default!;
+        public string Name { get; private set; } = string.Empty;
+        public CustomerStatus Status { get; private set; }
+        public DateTime CreatedAt { get; private set; }
+        public DateTime UpdatedAt { get; private set; }
+
+        private Customer() { }
 
         private Customer(
             Guid id,

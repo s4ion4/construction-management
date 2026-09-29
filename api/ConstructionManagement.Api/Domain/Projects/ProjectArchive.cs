@@ -4,18 +4,24 @@ namespace ConstructionManagement.Api.Domain.Projects
 {
     public class ProjectArchive : Entity<Guid>
     {
-        public Guid TenantId { get; }
-        public ProjectCode ProjectCode { get; }
-        public string Name { get; }
-        public Guid CustomerId { get; }
-        public string? CustomerContactPerson { get; }
-        public OrderDate OrderDate { get; }
-        public OrderType OrderType { get; }
-        public EstimateNumber? EstimateNumber { get; }
-        public Guid? DepartmentId { get; }
-        public Guid? SalesStaffId { get; }
-        public Guid? ConstructionStaffId { get; }
-        public DateTime ArchivedAt { get; }
+        public Guid TenantId { get; private set; }
+        public ProjectCode ProjectCode { get; private set; } = default!;
+        public string Name { get; private set; } = string.Empty;
+        public Guid CustomerId { get; private set; }
+        public string? CustomerContactPerson { get; private set; }
+        public OrderDate OrderDate { get; private set; } = default!;
+        public OrderType OrderType { get; private set; }
+        public EstimateNumber? EstimateNumber { get; private set; }
+        public Guid? DepartmentId { get; private set; }
+        public Guid? SalesStaffId { get; private set; }
+        public Guid? ConstructionStaffId { get; private set; }
+        public ProjectStatus Status { get; private set; }
+        public DateTime? ApprovedAt { get; private set; }
+        public DateTime CreatedAt { get; private set; }
+        public DateTime UpdatedAt { get; private set; }
+        public DateTime ArchivedAt { get; private set; }
+
+        private ProjectArchive() { }
 
         private ProjectArchive(
             Guid id,
@@ -30,6 +36,10 @@ namespace ConstructionManagement.Api.Domain.Projects
             Guid? departmentId,
             Guid? salesStaffId,
             Guid? constructionStaffId,
+            ProjectStatus status,
+            DateTime? approvedAt,
+            DateTime createdAt,
+            DateTime updatedAt,
             DateTime archivedAt)
             : base(id)
         {
@@ -44,6 +54,10 @@ namespace ConstructionManagement.Api.Domain.Projects
             DepartmentId = departmentId;
             SalesStaffId = salesStaffId;
             ConstructionStaffId = constructionStaffId;
+            Status = status;
+            ApprovedAt = approvedAt;
+            CreatedAt = createdAt;
+            UpdatedAt = updatedAt;
             ArchivedAt = archivedAt;
         }
 
@@ -60,6 +74,10 @@ namespace ConstructionManagement.Api.Domain.Projects
             Guid? departmentId,
             Guid? salesStaffId,
             Guid? constructionStaffId,
+            ProjectStatus status,
+            DateTime? approvedAt,
+            DateTime createdAt,
+            DateTime updatedAt,
             DateTime archivedAt)
             => new(
                 id,
@@ -74,6 +92,10 @@ namespace ConstructionManagement.Api.Domain.Projects
                 departmentId,
                 salesStaffId,
                 constructionStaffId,
+                status,
+                approvedAt,
+                createdAt,
+                updatedAt,
                 archivedAt);
     }
 }

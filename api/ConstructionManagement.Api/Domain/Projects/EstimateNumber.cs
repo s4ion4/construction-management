@@ -7,8 +7,10 @@ namespace ConstructionManagement.Api.Domain.Projects
         private const int MainNumberLength = 6;
         private const int BranchNumberLength = 2;
 
-        public string MainNumber { get; }
-        public string BranchNumber { get; }
+        public string MainNumber { get; } = string.Empty;
+        public string BranchNumber { get; } = string.Empty;
+
+        private EstimateNumber() { }
 
         private EstimateNumber(string mainNumber, string branchNumber)
         {

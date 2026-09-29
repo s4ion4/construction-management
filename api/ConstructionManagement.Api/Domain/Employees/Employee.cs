@@ -5,11 +5,15 @@ namespace ConstructionManagement.Api.Domain.Employees
 {
     public class Employee : Entity<Guid>
     {
-        public Guid TenantId { get; }
-        public EmployeeCode EmployeeCode { get; }
-        public string Name { get; }
-        public DepartmentCode DepartmentCode { get; }
-        public EmployeeStatus Status { get; }
+        public Guid TenantId { get; private set; }
+        public EmployeeCode EmployeeCode { get; private set; } = default!;
+        public string Name { get; private set; } = string.Empty;
+        public DepartmentCode DepartmentCode { get; private set; } = default!;
+        public EmployeeStatus Status { get; private set; }
+        public DateTime CreatedAt { get; private set; }
+        public DateTime UpdatedAt { get; private set; }
+
+        private Employee() { }
 
         private Employee(
             Guid id,

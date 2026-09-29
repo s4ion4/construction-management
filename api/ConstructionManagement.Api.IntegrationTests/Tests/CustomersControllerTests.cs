@@ -1,4 +1,5 @@
-using ConstructionManagement.Api.Controllers.Customers.Dtos;
+using ConstructionManagement.Api.Application.Customers;
+using ConstructionManagement.Api.Application.Customers.Dtos;
 using ConstructionManagement.Api.IntegrationTests.Common;
 using ConstructionManagement.Api.IntegrationTests.ObjectMothers;
 using System.Net;

@@ -4,12 +4,12 @@ namespace ConstructionManagement.Api.Domain.Projects
 {
     public class Project : Entity<Guid>
     {
-        public Guid TenantId { get; }
-        public ProjectCode ProjectCode { get; private set; }
-        public string Name { get; private set; }
+        public Guid TenantId { get; private set; }
+        public ProjectCode ProjectCode { get; private set; } = default!;
+        public string Name { get; private set; } = string.Empty;
         public Guid CustomerId { get; private set; }
         public string? CustomerContactPerson { get; private set; }
-        public OrderDate OrderDate { get; private set; }
+        public OrderDate OrderDate { get; private set; } = default!;
         public OrderType OrderType { get; private set; }
         public EstimateNumber? EstimateNumber { get; private set; }
         public Guid? DepartmentId { get; private set; }
@@ -17,6 +17,10 @@ namespace ConstructionManagement.Api.Domain.Projects
         public Guid? ConstructionStaffId { get; private set; }
         public ProjectStatus Status { get; private set; }
         public DateTime? ApprovedAt { get; private set; }
+        public DateTime CreatedAt { get; private set; }
+        public DateTime UpdatedAt { get; private set; }
+
+        private Project() { }
 
         private Project(
             Guid id,

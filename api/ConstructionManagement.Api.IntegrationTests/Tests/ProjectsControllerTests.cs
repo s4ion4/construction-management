@@ -1,4 +1,5 @@
-﻿using ConstructionManagement.Api.Controllers.Projects.Dtos;
+﻿using ConstructionManagement.Api.Application.Projects;
+using ConstructionManagement.Api.Application.Projects.Dtos;
 using ConstructionManagement.Api.Domain.Projects;
 using ConstructionManagement.Api.IntegrationTests.Common;
 using ConstructionManagement.Api.IntegrationTests.ObjectMothers;
@@ -281,7 +282,7 @@ namespace ConstructionManagement.Api.IntegrationTests.Tests
         }
 
         [Fact]
-        public async Task 削除済みの工事コードで登録しようとした場合は409エラーを返す()
+        public async Task アーカイブ済みの工事コードで登録しようとした場合は409エラーを返す()
         {
             // Arrange
             var cancellationToken = TestContext.Current.CancellationToken;
@@ -570,7 +571,7 @@ namespace ConstructionManagement.Api.IntegrationTests.Tests
         }
 
         [Fact]
-        public async Task 削除済みの工事コードに変更しようとした場合は409エラーを返す()
+        public async Task アーカイブ済みの工事コードに変更しようとした場合は409エラーを返す()
         {
             // Arrange
             var cancellationToken = TestContext.Current.CancellationToken;
@@ -1112,7 +1113,7 @@ namespace ConstructionManagement.Api.IntegrationTests.Tests
         }
 
         [Fact]
-        public async Task 削除済みの工事コードの場合は409エラーを返す()
+        public async Task アーカイブ済みの工事コードの場合は409エラーを返す()
         {
             // Arrange
             var cancellationToken = TestContext.Current.CancellationToken;

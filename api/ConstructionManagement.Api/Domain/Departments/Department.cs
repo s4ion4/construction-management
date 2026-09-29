@@ -4,10 +4,14 @@ namespace ConstructionManagement.Api.Domain.Departments
 {
     public class Department : Entity<Guid>
     {
-        public Guid TenantId { get; }
-        public DepartmentCode DepartmentCode { get; }
-        public string Name { get; }
-        public DepartmentStatus Status { get; }
+        public Guid TenantId { get; private set; }
+        public DepartmentCode DepartmentCode { get; private set; } = default!;
+        public string Name { get; private set; } = string.Empty;
+        public DepartmentStatus Status { get; private set; }
+        public DateTime CreatedAt { get; private set; }
+        public DateTime UpdatedAt { get; private set; }
+
+        private Department() { }
 
         private Department(
             Guid id,

@@ -74,18 +74,8 @@
     <Build Include="Tables\Project.sql" />
     <Build Include="Tables\ProjectArchive.sql" />
     <Build Include="Stored Procedures\Department_ReadMany.sql" />
-    <Build Include="Stored Procedures\Department_ReadById.sql" />
-    <Build Include="Stored Procedures\Employee_ReadMany.sql" />
     <Build Include="Stored Procedures\EmployeeDetails_ReadMany.sql" />
-    <Build Include="Stored Procedures\Employee_ReadById.sql" />
     <Build Include="Stored Procedures\Customer_ReadMany.sql" />
-    <Build Include="Stored Procedures\Customer_ReadById.sql" />
-    <Build Include="Stored Procedures\Project_Create.sql" />
-    <Build Include="Stored Procedures\Project_Update.sql" />
-    <Build Include="Stored Procedures\Project_DeleteByProjectCode.sql" />
-    <Build Include="Stored Procedures\Project_ReadByProjectCode.sql" />
-    <Build Include="Stored Procedures\Project_ArchiveByProjectCode.sql" />
-    <Build Include="Stored Procedures\ProjectArchive_ReadByProjectCode.sql" />
     <Build Include="Stored Procedures\ProjectDetails_ReadMany.sql" />
     <Build Include="Stored Procedures\ProjectDetails_ReadByProjectCode.sql" />
     <Build Include="Security\Schemas\Security.sql" />
@@ -101,10 +91,6 @@
     <None Include="Scripts\TestData\Customer.sql" />
     <None Include="Scripts\TestData\Project.sql" />
     <None Include="Scripts\TestData\ProjectArchive.sql" />
-    <Build Include="User Defined Types\ProjectCodeArray.sql" />
-    <Build Include="Stored Procedures\Project_ReadManyByProjectCodes.sql" />
-    <Build Include="Stored Procedures\Project_DeleteManyByProjectCodes.sql" />
-    <Build Include="Stored Procedures\Project_ArchiveManyByProjectCodes.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
