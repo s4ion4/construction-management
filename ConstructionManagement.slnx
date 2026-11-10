@@ -1,9 +1,21 @@
 <Solution>
-  <Project Path="api/ConstructionManagement.Api/ConstructionManagement.Api.csproj" />
-  <Project Path="api/ConstructionManagement.Api.UnitTests/ConstructionManagement.Api.UnitTests.csproj" />
-  <Project Path="api/ConstructionManagement.Api.IntegrationTests/ConstructionManagement.Api.IntegrationTests.csproj" />
-  <Project Path="database/ConstructionManagement.Database.sqlproj" Id="86373416-d138-424e-b14f-71db32f67232">
-    <Build />
-    <Deploy />
-  </Project>
+  <Folder Name="/api/src/">
+    <Project Path="api/src/ConstructionManagement.Api/ConstructionManagement.Api.csproj" />
+    <Project Path="api/src/ConstructionManagement.Domain/ConstructionManagement.Domain.csproj" />
+    <Project Path="api/src/ConstructionManagement.Infrastructure/ConstructionManagement.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/api/tests/">
+    <Project Path="api/tests/ConstructionManagement.IntegrationTests/ConstructionManagement.IntegrationTests.csproj" />
+    <Project Path="api/tests/ConstructionManagement.UnitTests/ConstructionManagement.UnitTests.csproj" />
+  </Folder>
+  <Folder Name="/database/">
+    <Project Path="database/ConstructionManagement.Database.sqlproj" Id="86373416-d138-424e-b14f-71db32f67232">
+      <Build />
+      <Deploy />
+    </Project>
+  </Folder>
+  <Folder Name="/api/ソリューション項目/">
+    <File Path="api/Directory.Build.props" />
+    <File Path="api/Directory.Packages.props" />
+  </Folder>
 </Solution>
